@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna's website</title>
+
+    <!-- Google Fonts Urbanist et Press Start 2P -->
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header>
+    <h1>Mon site</h1>
+    <nav class="top-nav">
+        <button class="nav-btn active" data-tab="accueil">Accueil</button>
+        <button class="nav-btn" data-tab="annee-2026">2026</button>
+        <button class="nav-btn" data-tab="annee-2025">2025</button>
+    </nav>
+    <div class="stickers">
+        <span>🌸</span><span>✨</span><span>💿</span><span>🕹️</span><span>📼</span><span>🎀</span>
+    </div>
+</header>
+
+<!-- PAGE D'ACCUEIL -->
+<section class="page active" id="accueil">
+    <h2>Bienvenue sur mon site !</h2>
+    <p>Découvre mes goûts et mes centres d'intérêt à travers des aesthetics, des images et mes passions 🌸✨</p>
+
+    <!-- BLOC MINECRAFT -->
+    <section class="aesthetic-block">
+        <h3 class="minecraft-title">Minecraft ✨</h3>
+        <p class="minecraft-text">J'adore Minecraft et ses vibes créatives :</p>
+        <div class="pinterest-gallery minecraft-gallery">
+            <img src="https://i.pinimg.com/1200x/13/8d/7e/138d7e3dc0d4a1325ce63dac878c8806.jpg">
+            <img src="https://i.pinimg.com/736x/dc/07/5c/dc075c4f9055e8f62667836cebf197f6.jpg">
+            <img src="https://i.pinimg.com/1200x/c8/57/0c/c8570c2fcf9af8650af0fa961bc22d33.jpg">
+        </div>
+    </section>
+
+    <!-- BLOC MANGA -->
+    <section class="aesthetic-block">
+        <h3 class="minecraft-title">Manga / Animés ✨</h3>
+        <p>J'aime bien les mangas et les animés :</p>
+        <div class="pinterest-gallery manga-gallery">
+            <img src="https://i.pinimg.com/736x/0b/a1/2b/0ba12b80a3492d921cc335b1e68638d2.jpg">
+            <img src="https://i.pinimg.com/736x/cc/10/0a/cc100a75c76bda537dc35b1658b7809d.jpg">
+            <img src="https://i.pinimg.com/1200x/08/20/77/0820779056e844190c75be580a8b2f63.jpg">
+            <img src="https://i.pinimg.com/1200x/46/2c/bb/462cbbc1f040868a823f7e8fcaf4ba4b.jpg">
+            <img src="https://i.pinimg.com/736x/d9/b9/a0/d9b9a009eeff9ee33cd7f22f5af32dae.jpg">
+            <img src="https://i.pinimg.com/736x/91/17/7c/91177ce82e9d7e70f23667abac931439.jpg">
+            <img src="https://i.pinimg.com/736x/5f/ef/89/5fef89a3131b13249358b4fd2c4a68b0.jpg">
+            <img src="https://i.pinimg.com/1200x/b1/77/31/b17731071a905237516057daa5a4e294.jpg">
+        </div>
+    </section>
+
+    <!-- BLOC ESTHETIQUE -->
+    <section class="aesthetic-block">
+        <h3 class="minecraft-title">Esthétique ✨</h3>
+        <p>J'aime bien ces esthétiques :</p>
+        <div class="pinterest-gallery aesthetic-gallery">
+            <img src="https://i.pinimg.com/736x/62/1c/80/621c80feeaad0937378a1a9e03a6be51.jpg">
+            <img src="https://i.pinimg.com/736x/c8/11/3b/c8113b73c50197551946036a6b852db9.jpg">
+            <img src="https://i.pinimg.com/736x/c0/47/42/c047425f5c0c68a0cac63bdaa2d68829.jpg">
+            <img src="https://i.pinimg.com/1200x/14/b8/2a/14b82a7a6723f6c6792ef504acb1e0dc.jpg">
+            <img src="https://i.pinimg.com/1200x/c6/42/b0/c642b045c3f922018635ea8e7dd9205b.jpg">
+        </div>
+    </section>
+
+    <!-- BLOC BONNES VIBES -->
+    <section class="aesthetic-block">
+        <h3>Bonnes vibes ✨</h3>
+        <p>Quelques statistiques pour sourire :</p>
+        <div class="counters">
+            <div class="counter" data-target="12">Mangas lus : <span>0</span></div>
+            <div class="counter" data-target="8">Animes vus : <span>0</span></div>
+            <div class="counter" data-target="324">Arbres replantés : <span>0</span></div>
+        </div>
+    </section>
+
+    <!-- MUR DE PARTAGES -->
+    <section class="aesthetic-block">
+        <h3>Partages & Avis 💬</h3>
+        <form id="shareForm">
+            <input type="text" name="name" placeholder="Ton prénom" required>
+            <textarea name="message" placeholder="Ton message sympa..." required></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+        <div class="shares"></div>
+    </section>
+</section>
+
+<!-- PAGE 2026 -->
+<section class="page" id="annee-2026">
+    <h2>2026</h2>
+    <p>Année douce avec Juminocore / Heisei Retro 🌸✨💿🕹️</p>
+
+    <!-- Janvier et Février identiques à ton code original -->
+    <section class="month-toggle">
+        <button class="month-btn">Janvier</button>
+        <div class="month-content">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="books-janvier-2026">Livres</button>
+                <button class="tab-btn" data-tab="series-janvier-2026">Séries</button>
+                <button class="tab-btn" data-tab="japanese-janvier-2026">Japonais</button>
+            </div>
+            <div class="tab-content active" id="books-janvier-2026">
+                <p>Recommandations livres de Janvier…</p>
+                <div class="pinterest-gallery">
+                    <img src="https://i.pinimg.com/736x/31/48/a5/3148a560ed64cf23a7f14bd76730593a.jpg">
+                    <img src="https://i.pinimg.com/1200x/c6/42/b0/c642b045c3f922018635ea8e7dd9205b.jpg">
+                </div>
+            </div>
+            <div class="tab-content" id="series-janvier-2026">
+                <p>Séries vues en Janvier…</p>
+            </div>
+            <div class="tab-content" id="japanese-janvier-2026">
+                <p>Progrès japonais de Janvier…</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="month-toggle">
+        <button class="month-btn">Février</button>
+        <div class="month-content">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="books-fevrier-2026">Livres</button>
+                <button class="tab-btn" data-tab="series-fevrier-2026">Séries</button>
+                <button class="tab-btn" data-tab="japanese-fevrier-2026">Japonais</button>
+            </div>
+            <div class="tab-content active" id="books-fevrier-2026">
+                <p>Recommandations livres de Février…</p>
+            </div>
+            <div class="tab-content" id="series-fevrier-2026">
+                <p>Séries vues en Février…</p>
+            </div>
+            <div class="tab-content" id="japanese-fevrier-2026">
+                <p>Progrès japonais de Février…</p>
+            </div>
+        </div>
+    </section>
+</section>
+
+<!-- PAGE 2025 -->
+<section class="page" id="annee-2025">
+    <h2>2025</h2>
+    <p>Retour sur 2025 🌸✨💿🕹️</p>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

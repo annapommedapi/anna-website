@@ -1,0 +1,149 @@
+body {
+    margin:0;
+    font-family:'Urbanist',sans-serif;
+    background-color:#FBF7F0;
+    color:#4A3F35;
+}
+
+/* HEADER */
+header{text-align:center;padding:50px 20px;position:relative;}
+header h1{font-size:48px;margin-bottom:15px;}
+.top-nav{margin-bottom:20px;}
+.nav-btn{
+    padding:10px 20px;
+    margin:0 8px;
+    border-radius:12px;
+    border:none;
+    background-color:#64d364;
+    color:#fff;
+    cursor:pointer;
+    font-weight:bold;
+    transition:transform 0.2s,box-shadow 0.2s;
+}
+.nav-btn:hover,.nav-btn.active{
+    transform:scale(1.05);
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+.stickers{position:absolute;top:10px;right:10px;}
+.stickers span{font-size:24px;margin:3px;display:inline-block;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+
+/* PAGES */
+.page{display:none;padding:30px 20px;max-width:1000px;margin:0 auto;}
+.page.active{display:block;}
+
+/* BLOC AESTHETIC */
+.aesthetic-block{margin-bottom:50px;padding:15px;border-radius:16px;background-color:#fff;box-shadow:0 5px 15px rgba(0,0,0,0.05);}
+
+/* MINECRAFT */
+.minecraft-title{font-family:'Press Start 2P',monospace;font-size:20px;animation:floatText 3s ease-in-out infinite;}
+@keyframes floatText{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+.minecraft-text{font-family:'Press Start 2P',monospace;font-size:12px;animation:none;}
+
+/* PINTEREST - MASONRY COLONNES */
+.pinterest-gallery{
+    column-count:3;
+    column-gap:10px;
+    margin-top:15px;
+}
+.pinterest-gallery img{
+    width:100%;
+    margin-bottom:10px;
+    border-radius:16px;
+    display:block;
+    transition:transform 0.3s,box-shadow 0.3s;
+}
+.pinterest-gallery img:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* MOIS DÉROULANTS */
+.month-toggle{margin-bottom:20px;}
+.month-btn{width:100%;text-align:left;padding:10px 15px;background-color:#ff87dd;border:none;border-radius:8px;margin-bottom:5px;cursor:pointer;font-weight:bold;transition:background 0.2s;}
+.month-btn:hover{background-color:#ff87dd;}
+
+/* ONGLETS */
+.tabs{margin:10px 0;}
+.tab-btn{padding:6px 12px;margin-right:5px;border-radius:6px;border:none;background-color:#A2E8A2;color:#fff;cursor:pointer;}
+.tab-btn.active{background-color:#8fc3ff;}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* COMPTEURS */
+.counter{font-weight:bold;margin:10px 0;font-size:16px;}
+/* NAVIGATION - boutons flottants */
+.nav-btn {
+    padding: 10px 20px;
+    margin: 0 8px;
+    border-radius: 16px;
+    border: none;
+    background-color: #A2E8A2;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Urbanist', sans-serif;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    position: relative;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background-color: #8fd68f;
+}
+
+/* PAGE - animation de transition */
+.page {
+    display: none;
+    padding: 30px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.page.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+/* =========================
+   VERSION MOBILE
+========================= */
+@media (max-width: 768px) {
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .top-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-btn {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .page {
+        padding: 20px 15px;
+    }
+
+    .pinterest-gallery {
+        column-count: 1;
+    }
+
+    .minecraft-title {
+        font-size: 14px;
+    }
+
+    .stickers {
+        position: static;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
