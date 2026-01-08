@@ -17,10 +17,24 @@
 <header>
     <h1>Mon site</h1>
     <nav class="top-nav">
+
         <button class="nav-btn active" data-tab="accueil">Accueil</button>
         <button class="nav-btn" data-tab="annee-2026">2026</button>
         <button class="nav-btn" data-tab="annee-2025">2025</button>
+
+    <!-- DROPDOWN LIFESTYLE -->
+        <div class="dropdown">
+            <button class="nav-btn dropdown-btn">Lifestyle ▾</button>
+            <div class="dropdown-menu">
+                <button class="nav-btn" data-tab="journal">Journal</button>
+                <button class="nav-btn" data-tab="recettes">Recettes</button>
+                <button class="nav-btn" data-tab="sport">Sport</button>
+                <button class="nav-btn" data-tab="positif">Positif</button>
+                <button class="nav-btn" data-tab="culture">Culture</button>
+            </div>
+        </div>
     </nav>
+
     <div class="stickers">
         <span>🌸</span><span>✨</span><span>💿</span><span>🕹️</span><span>📼</span><span>🎀</span>
     </div>
@@ -145,11 +159,105 @@
     </section>
 </section>
 
+<section class="page" id="journal">
+    <h2>Journal doux 🌸</h2>
+
+    <!-- MOOD DU JOUR -->
+    <section class="aesthetic-block mood-block">
+        <h3>Mood du jour</h3>
+        <div class="mood-buttons">
+            <button class="mood-btn" data-mood="calme">🌿 Calme</button>
+            <button class="mood-btn" data-mood="joyeux">✨ Joyeux</button>
+            <button class="mood-btn" data-mood="fatigue">🌧 Fatiguée</button>
+            <button class="mood-btn" data-mood="motivation">🔥 Motivation</button>
+        </div>
+        <p id="mood-text">Choisis ton humeur 💭</p>
+    </section>
+
+    <!-- PHRASE DU JOUR -->
+    <section class="aesthetic-block">
+        <h3>Phrase du jour</h3>
+        <p id="daily-quote"></p>
+    </section>
+</section>
+
+<section class="page" id="recettes">
+    <h2>Recettes slowlife 🍵</h2>
+
+    <section class="aesthetic-block">
+        <h3>Petit-déj doux</h3>
+        <img src="https://i.pinimg.com/736x/2d/3b/60/2d3b60c3.jpg">
+        <p>Énergie : ⭐⭐</p>
+        <p>Pourquoi j'aime : réconfortant et simple</p>
+    </section>
+
+    <section class="aesthetic-block">
+        <h3>Plats réconfortants</h3>
+        <img src="https://i.pinimg.com/736x/98/ae/23/98ae23.jpg">
+        <p>Énergie : ⭐⭐⭐</p>
+        <p>Pourquoi j'aime : nourrit le corps et le cœur</p>
+    </section>
+</section>
+
+<section class="page" id="sport">
+    <h2>Sport & Mouvement 🌿</h2>
+
+    <section class="aesthetic-block">
+        <h3>Temps ce mois-ci</h3>
+        <p><span id="sport-time">0</span> heures</p>
+
+        <button class="sport-btn" data-add="1">🏃 Cours de sport</button>
+        <button class="sport-btn" data-add="0.5">🧘 Yoga</button>
+        <button class="sport-btn" data-add="0.5">🚶 Marche</button>
+    </section>
+
+    <section class="aesthetic-block">
+        <h3>Motivation douce</h3>
+        <p id="sport-quote"></p>
+    </section>
+</section>
+
 <!-- PAGE 2025 -->
 <section class="page" id="annee-2025">
     <h2>2025</h2>
     <p>Retour sur 2025 🌸✨💿🕹️</p>
 </section>
+
+<!-- PAGE POSITIF -->
+<section class="page" id="positif">
+    <h2>Contenu rassurant 🌈</h2>
+
+    <section class="aesthetic-block">
+        <ul>
+            <li>🌱 Le monde plante plus d’arbres qu’avant</li>
+            <li>💊 Les soins progressent chaque année</li>
+            <li>📚 L’accès à la culture augmente</li>
+            <li>🤍 Les gens sont souvent plus gentils qu’on ne le croit</li>
+        </ul>
+    </section>
+</section>
+
+<!-- PAGE CULTURE -->
+<section class="page" id="culture">
+    <h2>Culture & vibes 🎀</h2>
+
+    <!-- FORMULAIRE AJOUT -->
+    <section class="aesthetic-block">
+        <h3>Ajouter un animé / manga</h3>
+
+        <input type="text" id="culture-title" placeholder="Titre" required>
+        <input type="text" id="culture-vibe" placeholder="Vibe (ex: mélancolique)">
+        <textarea id="culture-comment" placeholder="Commentaire"></textarea>
+        <input type="number" id="culture-rating" min="1" max="5" placeholder="Note (1 à 5)">
+        <input type="text" id="culture-image" placeholder="URL de l'image">
+
+        <button id="add-culture">Ajouter ✨</button>
+    </section>
+
+    <!-- LISTE -->
+    <div id="culture-list"></div>
+</section>
+
 
 <script src="script.js"></script>
 </body>

@@ -147,3 +147,112 @@ header h1{font-size:48px;margin-bottom:15px;}
         text-align: center;
     }
 }
+/* DROPDOWN */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 120%;
+    left: 0;
+    background: #fff;
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    animation: fadeSlide 0.4s ease;
+    z-index: 10;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* =========================
+   DROPDOWN LIFESTYLE
+========================= */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    background-color: #f2b8d8;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 120%;
+    left: 0;
+    min-width: 180px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    animation: dropdownFade 0.4s ease;
+    z-index: 50;
+}
+
+.dropdown-menu .nav-btn {
+    width: 100%;
+    margin: 0;
+    background-color: #a8e6cf;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+@keyframes dropdownFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE : dropdown au clic */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+    }
+}
+/* =========================
+   CULTURE CARDS
+========================= */
+.culture-card {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.culture-card img {
+    width: 120px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.culture-content {
+    flex: 1;
+}
+
+.stars {
+    color: #f7b500;
+    font-size: 18px;
+}
