@@ -256,3 +256,160 @@ header h1{font-size:48px;margin-bottom:15px;}
     color: #f7b500;
     font-size: 18px;
 }
+/* =========================
+   MODE JOURNÉE DIFFICILE
+========================= */
+body.soft-mode {
+    background-color: #fff0f6;
+    color: #5a4a4a;
+}
+
+body.soft-mode .aesthetic-block {
+    background-color: #ffffff;
+}
+
+body.soft-mode .nav-btn {
+    background-color: #b8f2d3;
+    color: #4a4a4a;
+}
+
+body.soft-mode .nav-btn.active {
+    background-color: #f4a8c8;
+}
+
+body.soft-mode .stickers span {
+    filter: hue-rotate(40deg);
+}
+/* =========================
+   THEMES PAR MOOD
+========================= */
+
+/* 🌧 Déjà existant */
+body.soft-mode {
+    background-color: #fff0f6;
+}
+
+/* 🔥 MOTIVATION */
+body.motivation-mode {
+    background-color: #fff7e6;
+}
+
+body.motivation-mode .nav-btn {
+    background-color: #ffd166;
+    color: #5a3b00;
+}
+
+body.motivation-mode .nav-btn.active {
+    background-color: #ffb703;
+}
+
+/* ✨ JOYEUX */
+body.joy-mode {
+    background-color: #f0f8ff;
+}
+
+body.joy-mode .nav-btn {
+    background-color: #a8ddff;
+    color: #1e4f6f;
+}
+
+body.joy-mode .nav-btn.active {
+    background-color: #7cc4f2;
+}
+
+/* =========================
+   MOOD GALLERY
+========================= */
+.mood-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+}
+
+.mood-gallery img {
+    width: 100%;
+    border-radius: 16px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.mood-gallery img:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+/* =========================
+   MODE NUIT DOUX
+========================= */
+
+body.night-mode {
+    background-color: #1f1f23;
+    transition: background-color 0.6s ease;
+}
+
+body.night-mode .aesthetic-block {
+    background-color: #2a2a30;
+    box-shadow: none;
+}
+
+body.night-mode h1,
+body.night-mode h2,
+body.night-mode h3,
+body.night-mode p,
+body.night-mode li {
+    color: var(--mood-color, #e8e8e8);
+}
+
+/* couleurs de texte selon mood */
+body.night-calme { --mood-color: #b8e0d2; }
+body.night-fatigue { --mood-color: #f4b6c2; }
+body.night-motivation { --mood-color: #ffd166; }
+body.night-joyeux { --mood-color: #a8ddff; }
+
+/* boutons */
+body.night-mode .nav-btn {
+    background-color: #3a3a42;
+    color: var(--mood-color, #fff);
+}
+/* MOOD TRACKER */
+#mood-tracker {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.mood-day {
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 8px;
+    background-color: #ddd;
+}
+
+.mood-calme { background-color: #b8e0d2; }
+.mood-fatigue { background-color: #f4b6c2; }
+.mood-motivation { background-color: #ffd166; }
+.mood-joyeux { background-color: #a8ddff; }
+#page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.8);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s, background-color 0.4s;
+    z-index: 9999;
+}
+
+#page-transition.active {
+    opacity: 1;
+}
+
+/* Couleurs selon le mood */
+#page-transition.mood-calme { background-color: rgba(200, 230, 210, 0.8); }
+#page-transition.mood-joyeux { background-color: rgba(255, 240, 200, 0.8); }
+#page-transition.mood-fatigue { background-color: rgba(220, 220, 220, 0.8); }
+#page-transition.mood-motivation { background-color: rgba(255, 200, 200, 0.8); }
+.pinterest-gallery {
+    column-count: 3;
+    column-gap: 10px;
+}

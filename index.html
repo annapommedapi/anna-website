@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
+<div id="page-transition"></div>
 <body>
 
 <header>
@@ -19,8 +20,14 @@
     <nav class="top-nav">
 
         <button class="nav-btn active" data-tab="accueil">Accueil</button>
-        <button class="nav-btn" data-tab="annee-2026">2026</button>
-        <button class="nav-btn" data-tab="annee-2025">2025</button>
+        <div class="dropdown">
+            <button class="nav-btn dropdown-btn">Recommandations ▾</button>
+            <div class="dropdown-menu">
+                <button class="nav-btn" data-tab="annee-2026">2026</button>
+                <button class="nav-btn" data-tab="annee-2025">2025</button>
+            </div>
+        </div>
+
 
     <!-- DROPDOWN LIFESTYLE -->
         <div class="dropdown">
@@ -31,12 +38,13 @@
                 <button class="nav-btn" data-tab="sport">Sport</button>
                 <button class="nav-btn" data-tab="positif">Positif</button>
                 <button class="nav-btn" data-tab="culture">Culture</button>
+                <button class="nav-btn" data-tab="tenues">Tenues</button>
             </div>
         </div>
     </nav>
 
     <div class="stickers">
-        <span>🌸</span><span>✨</span><span>💿</span><span>🕹️</span><span>📼</span><span>🎀</span>
+        <span>🌸</span><span>💗</span><span>🎀</span>
     </div>
 </header>
 
@@ -173,6 +181,14 @@
         </div>
         <p id="mood-text">Choisis ton humeur 💭</p>
     </section>
+    <section class="aesthetic-block">
+        <h3>Mood board du jour 🎀</h3>
+        <div class="mood-gallery" id="mood-gallery"></div>
+    </section>
+    <section class="aesthetic-block">
+        <h3>Mon mood ce mois-ci 📊</h3>
+        <div id="mood-tracker"></div>
+    </section>
 
     <!-- PHRASE DU JOUR -->
     <section class="aesthetic-block">
@@ -216,6 +232,60 @@
         <p id="sport-quote"></p>
     </section>
 </section>
+<section class="page" id="tenues">
+    <h2>Tenues & saisons 👗🍂</h2>
+    <p>Inspirations vestimentaires au fil des saisons ✨</p>
+
+    <!-- 🌸 PRINTEMPS -->
+    <section class="aesthetic-block">
+        <h3 class="minecraft-title">Printemps 🌸</h3>
+        <p>Couleurs douces, jupes, cardigans, vibes fraîches</p>
+
+        <div class="pinterest-gallery">
+            <!-- TU AJOUTES TES PHOTOS ICI -->
+            <img src="URL_IMAGE">
+            <img src="URL_IMAGE">
+            <img src="URL_IMAGE">
+        </div>
+    </section>
+
+    <!-- ☀️ ÉTÉ -->
+    <section class="aesthetic-block">
+        <h3 class="minecraft-title">Été ☀️</h3>
+        <p>Robes légères, sacs en toile, looks lumineux</p>
+
+        <div class="pinterest-gallery">
+            <img src="URL_IMAGE">
+            <img src="URL_IMAGE">
+            <img src="URL_IMAGE">
+        </div>
+    </section>
+
+    <!-- 🍁 AUTOMNE -->
+    <section class="aesthetic-block">
+        <h3 class="minecraft-title">Automne 🍁</h3>
+        <p>Pulls, jupes longues, bottines, tons chauds</p>
+
+        <div class="pinterest-gallery">
+            <img src="URL_IMAGE">
+            <img src="URL_IMAGE">
+            <img src="URL_IMAGE">
+        </div>
+    </section>
+
+    <!-- ❄️ HIVER -->
+    <section class="aesthetic-block">
+        <h3 class="minecraft-title">Hiver ❄️</h3>
+        <p>Manteaux, écharpes, layering cosy</p>
+
+        <div class="pinterest-gallery">
+            <img src="URL_IMAGE">
+            <img src="URL_IMAGE">
+            <img src="URL_IMAGE">
+        </div>
+    </section>
+</section>
+
 
 <!-- PAGE 2025 -->
 <section class="page" id="annee-2025">
