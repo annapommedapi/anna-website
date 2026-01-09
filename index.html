@@ -19,29 +19,42 @@
     <h1>Mon site</h1>
     <nav class="top-nav">
 
-        <button class="nav-btn active" data-tab="accueil">Accueil</button>
-        <div class="dropdown">
-            <button class="nav-btn dropdown-btn">Recommandations ▾</button>
-            <div class="dropdown-menu">
-                <button class="nav-btn" data-tab="annee-2026">2026</button>
-                <button class="nav-btn" data-tab="annee-2025">2025</button>
-            </div>
-        </div>
+    <button class="nav-btn active" data-tab="accueil">Accueil</button>
 
-
-    <!-- DROPDOWN LIFESTYLE -->
-        <div class="dropdown">
-            <button class="nav-btn dropdown-btn">Lifestyle ▾</button>
-            <div class="dropdown-menu">
-                <button class="nav-btn" data-tab="journal">Journal</button>
-                <button class="nav-btn" data-tab="recettes">Recettes</button>
-                <button class="nav-btn" data-tab="sport">Sport</button>
-                <button class="nav-btn" data-tab="positif">Positif</button>
-                <button class="nav-btn" data-tab="culture">Culture</button>
-                <button class="nav-btn" data-tab="tenues">Tenues</button>
-            </div>
+    <!-- ANNÉES -->
+    <div class="dropdown">
+        <button class="nav-btn dropdown-btn">Points forts années ▾</button>
+        <div class="dropdown-menu">
+        <button class="nav-btn" data-tab="annee-2026">2026</button>
+        <button class="nav-btn" data-tab="annee-2025">2025</button>
         </div>
+    </div>
+
+    <!-- RECOMMANDATIONS -->
+    <div class="dropdown">
+        <button class="nav-btn dropdown-btn">Recommandations ▾</button>
+        <div class="dropdown-menu">
+        <button class="nav-btn" data-tab="reco-animes">Animés</button>
+        <button class="nav-btn" data-tab="reco-series">Séries</button>
+        <button class="nav-btn" data-tab="reco-mangas">Mangas</button>
+        <button class="nav-btn" data-tab="reco-livres">Livres</button>
+        </div>
+    </div>
+
+    <!-- LIFESTYLE -->
+    <div class="dropdown">
+        <button class="nav-btn dropdown-btn">Lifestyle ▾</button>
+        <div class="dropdown-menu">
+        <button class="nav-btn" data-tab="journal">Journal</button>
+        <button class="nav-btn" data-tab="recettes">Recettes</button>
+        <button class="nav-btn" data-tab="sport">Sport</button>
+        <button class="nav-btn" data-tab="positif">Positif</button>
+        <button class="nav-btn" data-tab="tenues">Tenues</button>
+        </div>
+    </div>
+
     </nav>
+
 
     <div class="stickers">
         <span>🌸</span><span>💗</span><span>🎀</span>
@@ -197,23 +210,39 @@
     </section>
 </section>
 
-<section class="page" id="recettes">
-    <h2>Recettes slowlife 🍵</h2>
+<section class="page" id="recettes" data-type="recipes">
+  <h2>Recettes slowlife 🍵</h2>
 
-    <section class="aesthetic-block">
-        <h3>Petit-déj doux</h3>
-        <img src="https://i.pinimg.com/736x/2d/3b/60/2d3b60c3.jpg">
-        <p>Énergie : ⭐⭐</p>
-        <p>Pourquoi j'aime : réconfortant et simple</p>
-    </section>
+  <!-- FORMULAIRE -->
+  <section class="aesthetic-block">
+    <h3>Ajouter une recette</h3>
 
-    <section class="aesthetic-block">
-        <h3>Plats réconfortants</h3>
-        <img src="https://i.pinimg.com/736x/98/ae/23/98ae23.jpg">
-        <p>Énergie : ⭐⭐⭐</p>
-        <p>Pourquoi j'aime : nourrit le corps et le cœur</p>
-    </section>
+    <input type="text" id="recipe-title" placeholder="Titre de la recette">
+    <input type="number" id="recipe-rating" min="1" max="5" placeholder="Note (1 à 5)">
+    <input type="text" id="recipe-time" placeholder="Temps de préparation (ex: 20 min)">
+    <input type="text" id="recipe-image" placeholder="URL de la photo">
+    
+
+    <textarea
+      id="recipe-ingredients"
+      placeholder="Ingrédients (séparés par des virgules)">
+    </textarea>
+
+    <textarea
+      id="recipe-steps"
+      placeholder="Étapes de préparation">
+    </textarea>
+
+    <button id="add-recipe">Ajouter ✨</button>
+    <button class="print-recipe" data-index="${index}">🖨️ Fiche recette</button>
+
+  </section>
+
+  <!-- LISTE -->
+  <div id="recipe-list"></div>
+  
 </section>
+
 
 <section class="page" id="sport">
     <h2>Sport & Mouvement 🌿</h2>
@@ -307,27 +336,74 @@
     </section>
 </section>
 
-<!-- PAGE CULTURE -->
-<section class="page" id="culture">
-    <h2>Culture & vibes 🎀</h2>
+<section class="page" id="reco-animes">
+  <h2>Animés 🎀</h2>
 
-    <!-- FORMULAIRE AJOUT -->
-    <section class="aesthetic-block">
-        <h3>Ajouter un animé / manga</h3>
+  <section class="aesthetic-block">
+    <h3>Ajouter un animé</h3>
 
-        <input type="text" id="culture-title" placeholder="Titre" required>
-        <input type="text" id="culture-vibe" placeholder="Vibe (ex: mélancolique)">
-        <textarea id="culture-comment" placeholder="Commentaire"></textarea>
-        <input type="number" id="culture-rating" min="1" max="5" placeholder="Note (1 à 5)">
-        <input type="text" id="culture-image" placeholder="URL de l'image">
+    <input type="text" id="culture-title" placeholder="Titre">
+    <input type="text" id="culture-vibe" placeholder="Vibe">
+    <textarea id="culture-comment" placeholder="Commentaire"></textarea>
+    <input type="number" id="culture-rating" min="1" max="5" placeholder="Note">
+    <input type="text" id="culture-image" placeholder="URL image">
 
-        <button id="add-culture">Ajouter ✨</button>
-    </section>
+    <button id="add-culture">Ajouter ✨</button>
+  </section>
 
-    <!-- LISTE -->
-    <div id="culture-list"></div>
+  <div id="culture-list"></div>
 </section>
+<section class="page" id="reco-series">
+  <h2>Séries 🎬</h2>
 
+  <section class="aesthetic-block">
+    <h3>Ajouter un animé</h3>
+
+    <input type="text" id="series-title" placeholder="Titre">
+    <input type="text" id="series-vibe" placeholder="Vibe">
+    <textarea id="series-comment" placeholder="Commentaire"></textarea>
+    <input type="number" id="series-rating" min="1" max="5" placeholder="Note">
+    <input type="text" id="series-image" placeholder="URL image">
+
+    <button id="add-series">Ajouter ✨</button>
+  </section>
+
+  <div id="series-list"></div>
+</section>
+<section class="page" id="reco-mangas">
+  <h2>Mangas 📚</h2>
+
+  <section class="aesthetic-block">
+    <h3>Ajouter un manga</h3>
+
+    <input type="text" id="mangas-title" placeholder="Titre">
+    <input type="text" id="mangas-vibe" placeholder="Vibe">
+    <textarea id="mangas-comment" placeholder="Commentaire"></textarea>
+    <input type="number" id="mangas-rating" min="1" max="5" placeholder="Note">
+    <input type="text" id="mangas-image" placeholder="URL image">
+
+    <button id="add-mangas">Ajouter ✨</button>
+  </section>
+
+  <div id="mangas-list"></div>
+</section>
+<section class="page" id="reco-livres">
+  <h2>Livres 📖</h2>
+
+  <section class="aesthetic-block">
+    <h3>Ajouter un animé</h3>
+
+    <input type="text" id="livres-title" placeholder="Titre">
+    <input type="text" id="livres-vibe" placeholder="Vibe">
+    <textarea id="livres-comment" placeholder="Commentaire"></textarea>
+    <input type="number" id="livres-rating" min="1" max="5" placeholder="Note">
+    <input type="text" id="livres-image" placeholder="URL image">
+
+    <button id="add-livres">Ajouter ✨</button>
+  </section>
+
+  <div id="livres-list"></div>
+</section>
 
 <script src="script.js"></script>
 </body>

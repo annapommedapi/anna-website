@@ -185,36 +185,48 @@ function getDailyMoodImages(mood) {
 }
 
 function applyMood(mood) {
-    // ... ton code existant pour body
-    document.body.classList.remove("soft-mode","motivation-mode","joy-mode");
+    // Sécurité
+    if (!mood || !moodImages[mood]) return;
+
+    // ===== Thèmes =====
+    document.body.classList.remove(
+        "soft-mode",
+        "motivation-mode",
+        "joy-mode"
+    );
+
     if (mood === "fatigue") document.body.classList.add("soft-mode");
     if (mood === "motivation") document.body.classList.add("motivation-mode");
     if (mood === "joyeux") document.body.classList.add("joy-mode");
 
-    // Changer texte et images
-    document.getElementById('mood-text').innerText = moodMessages[mood];
-    if (moodGallery) {
-        moodGallery.innerHTML = "";
+    // ===== Texte mood =====
+    const moodText = document.getElementById("mood-text");
+    if (moodText) moodText.textContent = moodMessages[mood];
+
+    // ===== IMAGE DE FOND (ICI EST LA CLÉ ✨) =====
+    const moodBg = document.getElementById("mood-background");
+    if (moodBg) {
         const images = getDailyMoodImages(mood);
-        images.forEach(url => {
-            if (url) {
-                const img = document.createElement("img");
-                img.src = url;
-                moodGallery.appendChild(img);
-            }
-        });
+
+        if (images.length > 0) {
+            const chosen = images[Math.floor(Math.random() * images.length)];
+            moodBg.style.backgroundImage = `url("${chosen}")`;
+        }
     }
 
-    // Changer couleur du voile
+    // ===== Voile de transition =====
     const transition = document.getElementById("page-transition");
     if (transition) {
-        transition.classList.remove("mood-calme","mood-joyeux","mood-fatigue","mood-motivation");
-        transition.classList.add("mood-" + mood);
+        transition.className = "";
+        transition.classList.add("active", "mood-" + mood);
+        setTimeout(() => transition.classList.remove("active"), 600);
     }
 
+    // ===== Sauvegarde =====
     localStorage.setItem("mood", mood);
     applyNightMode(mood);
 }
+
 
 // =====================
 // MODE NUIT AUTO
@@ -388,6 +400,251 @@ if (addCultureBtn) {
 }
 
 // =====================
+// SERIES - AJOUT DYNAMIQUE
+// =====================
+const seriesList = document.getElementById('series-list');
+const addseriesBtn = document.getElementById('add-series');
+
+function renderseries() {
+  seriesList.innerHTML = "";
+  const items = JSON.parse(localStorage.getItem('seriesItems')) || [];
+
+  items.forEach((item, index) => {
+    const div = document.createElement('section');
+    div.className = "aesthetic-block series-card";
+
+    const stars = "⭐".repeat(item.rating);
+
+    div.innerHTML = `
+      <img src="${item.image || ''}">
+      <div class="series-content">
+        <h3>${item.title}</h3>
+        <p><strong>Vibe :</strong> ${item.vibe}</p>
+        <p><strong>Note :</strong> <span class="stars">${stars}</span> (${item.rating}/5)</p>
+        <p>${item.comment}</p>
+        <button class="edit-btn" data-index="${index}">Modifier ✏️</button>
+      </div>
+    `;
+
+    seriesList.appendChild(div);
+  });
+
+  // Événement pour chaque bouton Modifier
+  document.querySelectorAll('.edit-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = btn.dataset.index;
+      const items = JSON.parse(localStorage.getItem('seriesItems')) || [];
+      const item = items[idx];
+
+      // Remplir le formulaire avec les données existantes
+      document.getElementById('series-title').value = item.title;
+      document.getElementById('series-vibe').value = item.vibe;
+      document.getElementById('series-comment').value = item.comment;
+      document.getElementById('series-rating').value = item.rating;
+      document.getElementById('series-image').value = item.image;
+
+      // Supprimer l’ancien élément pour le remplacer lors de l’ajout
+      items.splice(idx, 1);
+      localStorage.setItem('seriesItems', JSON.stringify(items));
+      renderseries();
+    });
+  });
+}
+
+
+if (addseriesBtn) {
+  addseriesBtn.addEventListener('click', () => {
+    const title = document.getElementById('series-title').value;
+    const vibe = document.getElementById('series-vibe').value;
+    const comment = document.getElementById('series-comment').value;
+    const rating = Number(document.getElementById('series-rating').value);
+    const image = document.getElementById('series-image').value;
+
+    if (!title || !rating) {
+      alert("Titre et note obligatoires 🌸");
+      return;
+    }
+
+    const items = JSON.parse(localStorage.getItem('seriesItems')) || [];
+    items.push({ title, vibe, comment, rating, image });
+    localStorage.setItem('seriesItems', JSON.stringify(items));
+
+    renderseries();
+
+    document.getElementById('series-title').value = "";
+    document.getElementById('series-vibe').value = "";
+    document.getElementById('series-comment').value = "";
+    document.getElementById('series-rating').value = "";
+    document.getElementById('series-image').value = "";
+  });
+
+  renderseries();
+}
+
+// =====================
+// MANGAS - AJOUT DYNAMIQUE
+// =====================
+const mangasList = document.getElementById('mangas-list');
+const addmangasBtn = document.getElementById('add-mangas');
+
+function rendermangas() {
+  mangasList.innerHTML = "";
+  const items = JSON.parse(localStorage.getItem('mangasItems')) || [];
+
+  items.forEach((item, index) => {
+    const div = document.createElement('section');
+    div.className = "aesthetic-block mangas-card";
+
+    const stars = "⭐".repeat(item.rating);
+
+    div.innerHTML = `
+      <img src="${item.image || ''}">
+      <div class="mangas-content">
+        <h3>${item.title}</h3>
+        <p><strong>Vibe :</strong> ${item.vibe}</p>
+        <p><strong>Note :</strong> <span class="stars">${stars}</span> (${item.rating}/5)</p>
+        <p>${item.comment}</p>
+        <button class="edit-btn" data-index="${index}">Modifier ✏️</button>
+      </div>
+    `;
+
+    mangasList.appendChild(div);
+  });
+
+  // Événement pour chaque bouton Modifier
+  document.querySelectorAll('.edit-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = btn.dataset.index;
+      const items = JSON.parse(localStorage.getItem('mangasItems')) || [];
+      const item = items[idx];
+
+      // Remplir le formulaire avec les données existantes
+      document.getElementById('mangas-title').value = item.title;
+      document.getElementById('mangas-vibe').value = item.vibe;
+      document.getElementById('mangas-comment').value = item.comment;
+      document.getElementById('mangas-rating').value = item.rating;
+      document.getElementById('mangas-image').value = item.image;
+
+      // Supprimer l’ancien élément pour le remplacer lors de l’ajout
+      items.splice(idx, 1);
+      localStorage.setItem('mangasItems', JSON.stringify(items));
+      rendermangas();
+    });
+  });
+}
+
+
+if (addmangasBtn) {
+  addmangasBtn.addEventListener('click', () => {
+    const title = document.getElementById('mangas-title').value;
+    const vibe = document.getElementById('mangas-vibe').value;
+    const comment = document.getElementById('mangas-comment').value;
+    const rating = Number(document.getElementById('mangas-rating').value);
+    const image = document.getElementById('mangas-image').value;
+
+    if (!title || !rating) {
+      alert("Titre et note obligatoires 🌸");
+      return;
+    }
+
+    const items = JSON.parse(localStorage.getItem('mangasItems')) || [];
+    items.push({ title, vibe, comment, rating, image });
+    localStorage.setItem('mangasItems', JSON.stringify(items));
+
+    rendermangas();
+
+    document.getElementById('mangas-title').value = "";
+    document.getElementById('mangas-vibe').value = "";
+    document.getElementById('mangas-comment').value = "";
+    document.getElementById('mangas-rating').value = "";
+    document.getElementById('mangas-image').value = "";
+  });
+
+  rendermangas();
+}
+
+// =====================
+// LIVRES - AJOUT DYNAMIQUE
+// =====================
+const livresList = document.getElementById('livres-list');
+const addlivresBtn = document.getElementById('add-livres');
+
+function renderlivres() {
+  livresList.innerHTML = "";
+  const items = JSON.parse(localStorage.getItem('livresItems')) || [];
+
+  items.forEach((item, index) => {
+    const div = document.createElement('section');
+    div.className = "aesthetic-block livres-card";
+
+    const stars = "⭐".repeat(item.rating);
+
+    div.innerHTML = `
+      <img src="${item.image || ''}">
+      <div class="livres-content">
+        <h3>${item.title}</h3>
+        <p><strong>Vibe :</strong> ${item.vibe}</p>
+        <p><strong>Note :</strong> <span class="stars">${stars}</span> (${item.rating}/5)</p>
+        <p>${item.comment}</p>
+        <button class="edit-btn" data-index="${index}">Modifier ✏️</button>
+      </div>
+    `;
+
+    livresList.appendChild(div);
+  });
+
+  // Événement pour chaque bouton Modifier
+  document.querySelectorAll('.edit-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = btn.dataset.index;
+      const items = JSON.parse(localStorage.getItem('livresItems')) || [];
+      const item = items[idx];
+
+      // Remplir le formulaire avec les données existantes
+      document.getElementById('livres-title').value = item.title;
+      document.getElementById('livres-vibe').value = item.vibe;
+      document.getElementById('livres-comment').value = item.comment;
+      document.getElementById('livres-rating').value = item.rating;
+      document.getElementById('livres-image').value = item.image;
+
+      // Supprimer l’ancien élément pour le remplacer lors de l’ajout
+      items.splice(idx, 1);
+      localStorage.setItem('livresItems', JSON.stringify(items));
+      renderlivres();
+    });
+  });
+}
+
+
+if (addlivresBtn) {
+  addlivresBtn.addEventListener('click', () => {
+    const title = document.getElementById('livres-title').value;
+    const vibe = document.getElementById('livres-vibe').value;
+    const comment = document.getElementById('livres-comment').value;
+    const rating = Number(document.getElementById('livres-rating').value);
+    const image = document.getElementById('livres-image').value;
+
+    if (!title || !rating) {
+      alert("Titre et note obligatoires 🌸");
+      return;
+    }
+
+    const items = JSON.parse(localStorage.getItem('livresItems')) || [];
+    items.push({ title, vibe, comment, rating, image });
+    localStorage.setItem('livresItems', JSON.stringify(items));
+
+    renderlivres();
+
+    document.getElementById('livres-title').value = "";
+    document.getElementById('livres-vibe').value = "";
+    document.getElementById('livres-comment').value = "";
+    document.getElementById('livres-rating').value = "";
+    document.getElementById('livres-image').value = "";
+  });
+
+  renderlivres();
+}
+// =====================
 // EXPORT DONNÉES
 // =====================
 const exportBtn = document.createElement("button");
@@ -409,6 +666,183 @@ exportBtn.addEventListener("click", () => {
   link.download = "journal_backup.json";
   link.click();
 });
+// =====================
+// RECETTES - CRUD
+// =====================
+
+const recipeList = document.getElementById("recipe-list");
+const addRecipeBtn = document.getElementById("add-recipe");
+
+function renderRecipes() {
+  if (!recipeList) return;
+
+  recipeList.innerHTML = "";
+  const recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+
+  recipes.forEach((recipe, index) => {
+    const stars = "⭐".repeat(recipe.rating || 0);
+
+    const ingredientsHTML = recipe.ingredients
+      .map(i => `<li>${i.trim()}</li>`)
+      .join("");
+
+    const card = document.createElement("section");
+    card.className = "aesthetic-block recipe-card";
+
+    card.innerHTML = `
+    <div class="recipe-main">
+        <div class="recipe-content">
+        <h3>${recipe.title}</h3>
+        <h4><strong>Note :</strong> ${stars} (${recipe.rating}/5)</h4>
+        <h4><strong>Temps :</strong> ${recipe.time}</h4>
+
+        <h4>Ingrédients</h4>
+        <ul>${ingredientsHTML}</ul>
+        </div>
+
+        ${recipe.image ? `<img src="${recipe.image}">` : ""}
+    </div>
+
+    <div class="recipe-steps-wrapper">
+        <h4>Étapes</h4>
+        <p>${recipe.steps}</p>
+    </div>
+
+    <div class="recipe-actions">
+        <button class="edit-recipe" data-index="${index}">Modifier ✏️</button>
+        <button class="delete-recipe" data-index="${index}">Supprimer 🗑️</button>
+    </div>
+    `;
+
+
+    recipeList.appendChild(card);
+  });
+
+  // SUPPRIMER
+  document.querySelectorAll(".delete-recipe").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+      recipes.splice(btn.dataset.index, 1);
+      localStorage.setItem("recipes", JSON.stringify(recipes));
+      renderRecipes();
+    });
+  });
+
+  // MODIFIER
+  document.querySelectorAll(".edit-recipe").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+      const recipe = recipes[btn.dataset.index];
+
+      document.getElementById("recipe-title").value = recipe.title;
+      document.getElementById("recipe-rating").value = recipe.rating;
+      document.getElementById("recipe-time").value = recipe.time;
+      document.getElementById("recipe-image").value = recipe.image;
+      document.getElementById("recipe-ingredients").value = recipe.ingredients.join(", ");
+      document.getElementById("recipe-steps").value = recipe.steps;
+
+      recipes.splice(btn.dataset.index, 1);
+      localStorage.setItem("recipes", JSON.stringify(recipes));
+      renderRecipes();
+    });
+  });
+}
+
+if (addRecipeBtn) {
+  addRecipeBtn.addEventListener("click", () => {
+    const title = document.getElementById("recipe-title").value;
+    const rating = Number(document.getElementById("recipe-rating").value);
+    const time = document.getElementById("recipe-time").value;
+    const image = document.getElementById("recipe-image").value;
+    const ingredients = document
+      .getElementById("recipe-ingredients")
+      .value.split(",");
+    const steps = document.getElementById("recipe-steps").value;
+
+    if (!title || !rating) {
+      alert("Titre et note obligatoires 🌸");
+      return;
+    }
+
+    const recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+    recipes.push({
+      title,
+      rating,
+      time,
+      image,
+      ingredients,
+      steps
+    });
+
+    localStorage.setItem("recipes", JSON.stringify(recipes));
+    renderRecipes();
+
+    document.querySelectorAll(
+      "#recipe-title, #recipe-rating, #recipe-time, #recipe-image, #recipe-ingredients, #recipe-steps"
+    ).forEach(i => (i.value = ""));
+  });
+  
+
+  renderRecipes();
+}
+
+document.addEventListener("click", e => {
+  if (!e.target.classList.contains("print-recipe")) return;
+
+  const index = e.target.dataset.index;
+  const recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+  const r = recipes[index];
+
+  const ingredientsHTML = recipe.ingredients.map(raw => {
+  const name = raw.trim().toLowerCase();
+  const key = Object.keys(INGREDIENTS_DB).find(i => name.includes(i));
+  const emoji = key ? INGREDIENTS_DB[key] : "🍃";
+  
+
+  return `<li class="ingredient-item">${emoji} ${raw}</li>`;
+}).join("");
+
+
+  const printWindow = window.open("", "", "width=00,height=1000");
+  printWindow.document.write(`
+    <html>
+      <head>
+        <title>${r.title}</title>
+        <style>
+          body {
+            font-family: 'Urbanist', sans-serif;
+            padding: 40px;
+            color: #333;
+          }
+          h1 { font-size: 32px; }
+          h2 { margin-top: 30px; }
+          ul { padding-left: 20px; }
+          h5 { margin-left: 20px; }
+          img {
+            max-width: 100%;
+            border-radius: 12px;
+            margin: 20px 0;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>${r.title}</h1>
+        <p><strong>Temps :</strong> ${r.time}</p>
+        <p><strong>Note :</strong> ${"⭐".repeat(r.rating)}</p>
+        ${r.image ? `<img src="${r.image}">` : ""}
+        <h2>Ingrédients</h2>
+        <ul>${ingredients}</ul>
+        <h2>Étapes</h2>
+        <h5>${r.steps}</h5>
+      </body>
+    </html>
+  `);
+  printWindow.document.close();
+  printWindow.print();
+});
+
+
+
 
 // =====================
 // MOOD TRACKER MENSUEL

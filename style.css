@@ -257,6 +257,78 @@ header h1{font-size:48px;margin-bottom:15px;}
     font-size: 18px;
 }
 /* =========================
+   SERIES CARDS
+========================= */
+.series-card {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.series-card img {
+    width: 120px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.series-content {
+    flex: 1;
+}
+
+.stars {
+    color: #f7b500;
+    font-size: 18px;
+}
+/* =========================
+   MANGAS CARDS
+========================= */
+.mangas-card {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.mangas-card img {
+    width: 120px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.mangas-content {
+    flex: 1;
+}
+
+.stars {
+    color: #f7b500;
+    font-size: 18px;
+}
+/* =========================
+   LIVRES CARDS
+========================= */
+.livres-card {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.livres-card img {
+    width: 120px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.livres-content {
+    flex: 1;
+}
+
+.stars {
+    color: #f7b500;
+    font-size: 18px;
+}
+/* =========================
    MODE JOURNÉE DIFFICILE
 ========================= */
 body.soft-mode {
@@ -280,8 +352,7 @@ body.soft-mode .nav-btn.active {
 body.soft-mode .stickers span {
     filter: hue-rotate(40deg);
 }
-/* =========================
-   THEMES PAR MOOD
+/* =====THEMES PAR MOOD
 ========================= */
 
 /* 🌧 Déjà existant */
@@ -336,8 +407,7 @@ body.joy-mode .nav-btn.active {
     transform: translateY(-4px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
-/* =========================
-   MODE NUIT DOUX
+/* ======MODE NUIT DOUX
 ========================= */
 
 body.night-mode {
@@ -413,3 +483,151 @@ body.night-mode .nav-btn {
     column-count: 3;
     column-gap: 10px;
 }
+/* =========================
+   FOND MOOD – JOURNAL
+========================= */
+
+#mood-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 0.8s ease, filter 0.8s ease;
+    filter: blur(6px) brightness(0.9);
+}
+
+/* voile pour garder la lisibilité */
+#mood-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.55);
+}
+
+/* mode nuit */
+body.night-mode #mood-background::after {
+    background: rgba(0,0,0,0.55);
+}
+
+/* blocs au-dessus */
+.page,
+.aesthetic-block {
+    position: relative;
+    z-index: 1;
+}
+.aesthetic-block input,
+.aesthetic-block textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 8px 0;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.6);
+  font-family: 'Urbanist', sans-serif;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.aesthetic-block input:focus,
+.aesthetic-block textarea:focus {
+  outline: none;
+  border-color: #f3a6c8;
+  background: white;
+  box-shadow: 0 6px 20px rgba(243,166,200,0.25);
+}
+
+.aesthetic-block button {
+  margin-top: 10px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #ff97d2, #ff97d2);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.aesthetic-block button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+
+.ingredient-item {
+  list-style: none;
+  margin-bottom: 6px;
+}
+
+
+/* Image recette (même taille que mangas / culture) */
+.recipe-card img {
+  width: 140px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 18px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+
+/* Carte recette */
+.recipe-card {
+  display: flex;
+  flex-direction: column; /* 🔥 clé absolue */
+  gap: 16px;
+}
+
+/* Ligne du haut */
+.recipe-main {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+
+}
+
+/* Image */
+.recipe-main img {
+  width: 140px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 18px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* Contenu texte */
+.recipe-content ul {
+  padding-left: 18px;
+}
+
+/* Étapes */
+.recipe-steps-wrapper {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(0,0,0,0.15);
+}
+
+.recipe-steps-wrapper p {
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* Boutons */
+.recipe-actions {
+  display: flex;
+  gap: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
