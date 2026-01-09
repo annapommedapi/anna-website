@@ -38,6 +38,7 @@
         <button class="nav-btn" data-tab="reco-series">Séries</button>
         <button class="nav-btn" data-tab="reco-mangas">Mangas</button>
         <button class="nav-btn" data-tab="reco-livres">Livres</button>
+        <button class="nav-btn" data-tab="a-regarder">À regarder</button>
         </div>
     </div>
 
@@ -59,6 +60,7 @@
     <div class="stickers">
         <span>🌸</span><span>💗</span><span>🎀</span>
     </div>
+    
 </header>
 
 <!-- PAGE D'ACCUEIL -->
@@ -76,6 +78,8 @@
             <img src="https://i.pinimg.com/1200x/c8/57/0c/c8570c2fcf9af8650af0fa961bc22d33.jpg">
         </div>
     </section>
+    <div id="random-watch" class="watch-reminder"></div>
+
 
     <!-- BLOC MANGA -->
     <section class="aesthetic-block">
@@ -126,6 +130,8 @@
             <button type="submit">Envoyer</button>
         </form>
         <div class="shares"></div>
+        <div id="daily-images"></div>
+
     </section>
 </section>
 
@@ -404,6 +410,28 @@
 
   <div id="livres-list"></div>
 </section>
+<section class="page" id="a-regarder">
+  <h2>À regarder</h2>
+
+  <section class="aesthetic-block">
+    <h3>Ajouter une recommandation</h3>
+
+    <input type="text" id="watch-title" placeholder="Titre">
+    <select id="watch-type">
+      <option value="Anime">Anime</option>
+      <option value="Série">Série</option>
+      <option value="Film">Film</option>
+      <option value="Manga">Manga</option>
+      <option value="Livre">Livre</option>
+    </select>
+    <textarea id="watch-note" placeholder="Pourquoi je veux le voir / lire"></textarea>
+    <input type="url" id="watch-image" placeholder="URL de l’image (optionnel)">
+    <button id="add-watch">Ajouter ✨</button>
+  </section>
+
+  <div id="watch-list"></div>
+</section>
+
 
 <script src="script.js"></script>
 </body>

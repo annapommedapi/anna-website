@@ -869,3 +869,132 @@ if (tracker) {
     localStorage.setItem(`mood-${todayNumber}`, savedMood);
   }
 }
+// =====================
+// A REGARDER / LIRE
+// =====================
+const watchList = document.getElementById("watch-list");
+const addWatchBtn = document.getElementById("add-watch");
+
+function renderWatchList() {
+  if (!watchList) return;
+  watchList.innerHTML = "";
+
+  const items = JSON.parse(localStorage.getItem("watchItems")) || [];
+
+  items.forEach((item, index) => {
+    const div = document.createElement("section");
+    div.className = "watch-card aesthetic-block";
+
+    div.innerHTML = `
+    <div class="watch-content">
+        <h3>${item.title}</h3>
+        <p><strong>${item.type}</strong></p>
+        ${item.note ? `<p>${item.note}</p>` : ""}
+    
+        <button data-index="${index}" class="delete-watch">Supprimer</button>
+    </div>
+        ${item.image ? `<img src="${item.image}" class="watch-image">` : ""}
+    `;
+
+    watchList.appendChild(div);
+  });
+
+  document.querySelectorAll(".delete-watch").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const items = JSON.parse(localStorage.getItem("watchItems")) || [];
+      items.splice(btn.dataset.index, 1);
+      localStorage.setItem("watchItems", JSON.stringify(items));
+      renderWatchList();
+    });
+  });
+}
+
+if (addWatchBtn) {
+  addWatchBtn.addEventListener("click", () => {
+    const title = document.getElementById("watch-title").value;
+    const type = document.getElementById("watch-type").value;
+    const note = document.getElementById("watch-note").value;
+    const image = document.getElementById("watch-image").value;
+
+
+
+    if (!title) return;
+
+    const items = JSON.parse(localStorage.getItem("watchItems")) || [];
+    items.push({ title, type, note, image });
+
+    localStorage.setItem("watchItems", JSON.stringify(items));
+    renderWatchList();
+
+    document.getElementById("watch-title").value = "";
+    document.getElementById("watch-note").value = "";
+  });
+
+  renderWatchList();
+}
+// =====================
+// RAPPEL ACCUEIL - A REGARDER
+// =====================
+const randomWatch = document.getElementById("random-watch");
+
+if (randomWatch) {
+  const items = JSON.parse(localStorage.getItem("watchItems")) || [];
+
+  if (items.length > 0) {
+    const item = items[Math.floor(Math.random() * items.length)];
+    randomWatch.innerHTML = `
+      <h4>À regarder</h4>
+      <strong>${item.title}</strong>
+      <p>${item.type}</p>
+      ${item.image ? `<img src="${item.image}" class="random-watch-img">` : ""}
+    `;
+  }
+}
+/* // =====================
+// IMAGES DOUCES DU JOUR
+// =====================
+const dailyImagesContainer = document.getElementById("daily-images");
+
+if (dailyImagesContainer) {
+  const images = JSON.parse(localStorage.getItem("watchItems")) || [];
+
+  if (images.length > 0) {
+    const today = new Date().toDateString();
+    let index = today.split("").reduce((a, b) => a + b.charCodeAt(0), 0);
+    index = index % images.length;
+
+    const imageUrl = images[index].image;
+
+    for (let i = 0; i < 3; i++) {
+      const div = document.createElement("div");
+      div.className = "daily-image";
+
+      div.style.top = `${20 + Math.random() * 200}px`;
+      div.style.right = `${20 + Math.random() * 200}px`;
+      div.style.setProperty("--rot", `${-5 + Math.random() * 10}deg`);
+
+      div.innerHTML = `<img src="${imageUrl}" alt="">`;
+      dailyImagesContainer.appendChild(div);
+    }
+  }
+} */
+// =====================
+// NOTIFICATIONS D'ALLER SUR LE SITE
+// =====================
+if ("Notification" in window) {
+  Notification.requestPermission();
+}
+
+function dailyReminder() {
+  if (Notification.permission === "granted") {
+    new Notification("🌸 Petit rappel doux", {
+      body: "Va faire un tour sur ton cocon 💛",
+      icon: "/icon.png"
+    });
+  }
+}
+const lastNotif = localStorage.getItem("lastNotif"); /* permet d'avoir une notification par jour d'aller sur le site */ 
+if (lastNotif !== today) {
+  dailyReminder();
+  localStorage.setItem("lastNotif", today);
+}
