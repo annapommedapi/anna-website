@@ -1027,3 +1027,17 @@ const urlsToCache = [
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
 }
+const notifBtn = document.getElementById("enable-notifs");
+
+if (notifBtn) {
+  notifBtn.addEventListener("click", async () => {
+    const permission = await Notification.requestPermission();
+
+    if (permission === "granted") {
+      alert("🌸 Notifications activées");
+    } else {
+      alert("Notifications refusées");
+    }
+  });
+}
+
