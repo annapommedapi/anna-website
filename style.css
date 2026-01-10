@@ -728,7 +728,7 @@ body.night-mode #mood-background::after {
 @media (max-width: 768px) {
   .random-watch {
     position: static;       /* enlève le flottant */
-    margin-top: 30px;       /* descend le bloc */
+    margin-top: 60px;       /* descend le bloc */
     margin-bottom: 20px;
   }
 }
