@@ -998,3 +998,34 @@ if (lastNotif !== today) {
   dailyReminder();
   localStorage.setItem("lastNotif", today);
 }
+
+if (randomWatch) {
+  randomWatch.addEventListener("click", () => {
+    const targetId = randomWatch.dataset.tab;
+    const targetPage = document.getElementById(targetId);
+
+    if (!targetPage) return;
+
+    // désactiver pages
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+
+    // activer la bonne page
+    targetPage.classList.add("active");
+
+    // scroll en haut (mobile friendly)
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+const CACHE_NAME = "journal-cache-v1";
+const urlsToCache = [
+  "./",
+  "./index.html",
+  "./style.css",
+  "./script.js"
+];
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js");
+  });
+}

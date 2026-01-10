@@ -684,9 +684,9 @@ body.night-mode #mood-background::after {
 }
 #random-watch {
   position: absolute;
-  top: -50px;
+  top: -150px;
   right: 20px;
-  max-width: 220px;
+  max-width: 150px;
 }
 /* =========================
    POST-IT "À REGARDER"
@@ -695,7 +695,7 @@ body.night-mode #mood-background::after {
   position: absolute;
   right: 25px;
 
-  width: 220px;
+  width: 150px;
   padding: 14px 14px 16px;
 
   background: linear-gradient(
@@ -718,7 +718,13 @@ body.night-mode #mood-background::after {
 
   box-shadow: 0 14px 35px rgba(0,0,0,0.18);
 }
+#random-watch {
+  cursor: pointer;
+}
 
+#random-watch:hover {
+  filter: brightness(1.05);
+}
 
 
 
